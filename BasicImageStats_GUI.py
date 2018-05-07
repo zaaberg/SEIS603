@@ -7,6 +7,7 @@ import os
 import matplotlib.pyplot as plot
 from matplotlib.backends.backend_tkagg import FigureCanvasAgg, NavigationToolbar2TkAgg
 
+
 class App():
     master = Tk()
 
@@ -52,7 +53,8 @@ Use the 'Browse' button to find your image file. Click
 You'll be provided with a histogram of pixel values. Close
 out of it and the stats table will pop-up.
 
-Statistics will be provided per layer (RGB or RGBA).''')
+Statistics will be provided per layer (RGB or RGBA).
+''')
         context.grid(row=0,column=2)
         labelbox.grid(row=0, column=8, padx=10, rowspan=6)
 
@@ -64,7 +66,7 @@ Statistics will be provided per layer (RGB or RGBA).''')
     def open_file(self):
         # Define file dialog options
         options = {}
-        options['title'] = 'Input GDB:'
+        options['title'] = 'Input Image:'
         options['initialdir'] = 'C:/'
         # Open file dialog
         file_path = filedialog.askopenfilename(**options)
