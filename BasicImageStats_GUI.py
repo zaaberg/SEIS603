@@ -5,14 +5,12 @@ from PIL import Image as im
 from PIL import ImageStat as imstat
 import os
 import matplotlib.pyplot as plot
-from matplotlib.backends.backend_tkagg import FigureCanvasAgg, NavigationToolbar2TkAgg
 
 
 class App():
     master = Tk()
 
     def __init__(self):
-        # Assign additional class-level attributes
         # Execute core methods
         self.config_app()
         self.app_config()
@@ -22,8 +20,10 @@ class App():
         # Configure app
         self.master.title('Basic Image Stats')
         loc_bitmap = os.path.join(os.path.dirname(__file__), 'assets', 'icon', 'camera.ico')
+        # .ico file isn't compatible when run on linux.
         try:
             self.master.iconbitmap(loc_bitmap)
+
         except:
             pass
     def app_config(self):
