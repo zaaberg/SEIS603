@@ -20,12 +20,14 @@ class App():
         # Configure app
         self.master.title('Basic Image Stats')
         loc_bitmap = os.path.join(os.path.dirname(__file__), 'assets', 'icon', 'camera.ico')
+
         # .ico file isn't compatible when run on linux.
         try:
             self.master.iconbitmap(loc_bitmap)
 
         except:
             pass
+
     def app_config(self):
         # Insert widgets
         input_label = Label(self.master)
@@ -96,7 +98,7 @@ Standard Deviation:\n\n{pstddev}
                 '''.format(minmax=stats.extrema, pcount=stats.count, psum=stats.sum, psum2=stats.sum2, pmean=stats.mean,
                            pmedian=stats.median, prms=stats.rms, pvar=stats.var, pstddev=stats.stddev)
 
-                plot.hist(rast_open.histogram(), bins=256)
+                plot.hist(rast_open.histogram())
                 plot.show()
 
                 messagebox.showinfo("Image Statistics", stat_status)
