@@ -1,4 +1,4 @@
-# SEIS603
+# SEIS603 -- In Development
 
 Final project for SEIS 603: Foundations of Software Development - Python.
 
