@@ -11,17 +11,17 @@ class App():
     master = Tk()
 
     def __init__(self):
-        # Execute core methods
-        self.config_app()
+        # Initialize the application
+        self.app_assets()
         self.app_config()
         self.run_app()
 
-    def config_app(self):
+    def app_assets(self):
         # Configure app
         self.master.title('Basic Image Stats')
         loc_bitmap = os.path.join(os.path.dirname(__file__), 'assets', 'icon', 'camera.ico')
 
-        # .ico file isn't compatible when run on linux.
+        # .ico file isn't compatible when run on linux. It's only for appearances so it can be passed over.
         try:
             self.master.iconbitmap(loc_bitmap)
 
@@ -29,7 +29,7 @@ class App():
             pass
 
     def app_config(self):
-        # Insert widgets
+        # Configure the application parameters and styling.
         input_label = Label(self.master)
         input_label['text'] = 'Input Image File:'
         input_label.grid(row=2, column=0, pady=3)
@@ -85,7 +85,7 @@ Statistics will be provided per layer (RGB or RGBA).
             with im.open(input_image) as rast_open:
                 stats = imstat.Stat(rast_open)
 
-                stat_status = '''                                                     
+                stat_info = '''                                                     
 Min/Max:\n\n{minmax}\n\n
 Pixel Count:\n\n{pcount}\n\n
 Sum of Pixels:\n\n{psum}\n\n
@@ -98,15 +98,16 @@ Standard Deviation:\n\n{pstddev}
                 '''.format(minmax=stats.extrema, pcount=stats.count, psum=stats.sum, psum2=stats.sum2, pmean=stats.mean,
                            pmedian=stats.median, prms=stats.rms, pvar=stats.var, pstddev=stats.stddev)
 
+                # Opening the image's histogram and plotting it with matplotlib.
                 plot.hist(rast_open.histogram())
                 plot.show()
 
-                messagebox.showinfo("Image Statistics", stat_status)
+                messagebox.showinfo("Image Statistics", stat_info)
         except IOError:
             messagebox.showinfo("Error!", "Error: Not a recognized image type.")
 
     def run_app(self):
-        # Run the mainloop
+        # Run the mainloop which essentially starts the application.
         self.master.mainloop()
 
 
